@@ -11,7 +11,8 @@ public class Baraja {
     private int NUM_CARTAS = 94;
     private Carta[] baraja;
     
-    public baraja(){
+    public Baraja(){
+        
         baraja = new Carta[NUM_CARTAS];
         // Nigiri (todos los tipos), Tempura, Sashimi, Gyoza, Wasabi y Maki
         for (int i=0; i<5; i++){
@@ -50,14 +51,14 @@ public class Baraja {
     
     public void barajar()
     {
-    	   int posAl;
+    	   int pos;
            Carta aux[]=new Carta[62];
            int i=0;
-           while(i<getNumCartas()){
+           while(i<getNUM_CARTAS()){
                do{
-                   posAl=(int)(Math.random()*62);                   
-               }while(aux[posAl]!=null);
-                   aux[posAl]=baraja[i];
+                   pos=(int)(Math.random()*62);                   
+               }while(aux[pos]!=null);
+                   aux[pos]=baraja[i];
                    i++;
            }	
            baraja=aux;
@@ -65,9 +66,9 @@ public class Baraja {
     
     public Carta darCarta()
     {
-    	Carta actual = baraja[numCartas-1];
-    	baraja[numCartas-1] = null;
-    	numCartas--;
+    	Carta actual = baraja[NUM_CARTAS-1];
+    	baraja[NUM_CARTAS-1] = null;
+    	NUM_CARTAS--;
     	return actual;
     }
 
