@@ -11,5 +11,6 @@ package com.uvigo.poyectosushigo.CORE;
 
 public class Jugador {
     
-	
+    
+    
 }
