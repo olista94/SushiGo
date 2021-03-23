@@ -5,28 +5,25 @@ package com.uvigo.poyectosushigo.CORE;
 
 
 public class Carta {
+
+    private String nombreCarta;
     
-    private String nombre;
-	
     public Carta(){
-
-            nombre = "";
+        nombreCarta = "";
     }
 
-    public Carta(String no)
-    {
-            nombre = no;
-
-    }
-    public String getNombre()
-    {
-            return nombre;
+    public Carta(String nombreCarta) {
+        this.nombreCarta = nombreCarta;
     }
 
-    public String toString()
-    {
-            return ("La carta es: "+nombre);
+    public String getNombreCarta() {
+        return nombreCarta;
     }
 
-	
+    @Override
+    public String toString() {
+        return "La carta es: " + nombreCarta;
+    }
+        
+        
 }

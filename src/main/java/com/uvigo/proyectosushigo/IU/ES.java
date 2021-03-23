@@ -5,8 +5,8 @@
  */
 package com.uvigo.proyectosushigo.IU;
 
-import java.util.Scanner;
-
+//import java.io.IOException;
+import java.util.*;
 
 public class ES
 {
@@ -14,22 +14,48 @@ public class ES
     
     public static String pideCadena(String mensaje)
     {
-         // Poner el mensaje
+        boolean repite;
+        String toret = "";
+        do{
+            repite = false;
+            
+            // Poner el mensaje
             System.out.println(mensaje);
-               
-             // Pedir
-            return leer.nextLine();
-               
+            try{
+                toret = leer.nextLine();
+            }
+            catch(Exception exc){
+                System.out.println("Debe ingresar una letra o caracter");
+                repite = true;
+            }
+        }
+        while ( repite );
+       
+        return toret;
+         
     }
     
         
     public static int pideNumero(String mensaje)
     {
-        
+        boolean repite;
+        int toret = 0;
+        do{
+            repite = false;
+            
+            // Poner el mensaje
             System.out.println(mensaje);
-
-            // Pedir
-            return Integer.parseInt(leer.nextLine());
+            try{
+                toret = Integer.parseInt(leer.nextLine());
+            }
+            catch(NumberFormatException  exc){
+                System.out.println("Debe ingresar un numero");
+                repite = true;
+            }
+        }
+        while ( repite );
        
+        return toret;
+
     }
 }
