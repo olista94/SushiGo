@@ -3,15 +3,10 @@
  */
 package com.uvigo.poyectosushigo.CORE;
 
-
 public class Carta {
 
-    private String nombreCarta;
+    private final String nombreCarta;
     
-    public Carta(){
-        nombreCarta = "";
-    }
-
     public Carta(String nombreCarta) {
         this.nombreCarta = nombreCarta;
     }
@@ -22,8 +17,6 @@ public class Carta {
 
     @Override
     public String toString() {
-        return "La carta es: " + nombreCarta;
+        return nombreCarta + "\n";
     }
-        
-        
 }

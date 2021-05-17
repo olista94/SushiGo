@@ -1,39 +1,82 @@
 /*
 * Representa las cartas que tiene un jugador en la mano (las que dispone para jugar).
-* Estructura: Se utilizarán TAD adecuado -> LISTA (Actividad 7)
+* Estructura: Se utilizarán TAD adecuado. -> LISTA (Actividad 7)
 * Funcionalidad: añadir carta a la mano, quitar carta de la mano, visualizar cartas de la mano,...
 */
 package com.uvigo.poyectosushigo.CORE;
 
-public class Mano 
-{
-   private int numCartas;
-   //Lista <Integer> cartasMano = new Lista<>();
-   private Carta[]cartasMano;
+//import java.util.LinkedList;
+import lista.*;
 
-    public Mano(int numCartas) {
-        numCartas = 0;
-        cartasMano = new Carta[numCartas];
-    }
 
-    public int getNumCartas() {
-        return numCartas;
+public class Mano {
+    
+    private final Lista<Carta> mano;
+    
+    public Mano(){
+        mano = new ListaEnlazada<>();
     }
     
-    // Añade una carta a la mano y aumeta el numero de cartas de la mano
-    public void anhadirCarta(Carta carta){
-        cartasMano[numCartas] = carta;
-        numCartas++;
+    public void ordenar(){
+        int var = 0;
+        Carta[] aux = new Carta[mano.tamaño()];
+
+        while (!mano.esVacio()) {
+            aux[var] = mano.recuperar();
+            mano.suprimir(aux[var]);
+            var++;
+        }
+
+        for (int i = 1; i < aux.length; i++) {
+            Carta elem = aux[i];
+            int j = (i - 1);
+
+            while ((j >= 0) && (elem.getNombreCarta().compareTo(aux[j].getNombreCarta()) < 0)) {
+                aux[j + 1] = aux[j--];
+            }
+            aux[j + 1] = elem;
+        }
+
+        for (int i = 0; i < aux.length; i++) {
+            mano.insertarFinal(aux[i]);
+        }
     }
-   
-//    public void quitarCarta(){
-//        int i=0;
-//        while(i < numCartas){
-//            mano[i] = new Carta();
-//            i++;        
-//        }
-//        numCartas = 0;
-//    }
+    
+    public void anhadirCarta(Carta carta){
+        mano.insertarFinal(carta);
+    }
+    
+    public int getNumCartas(){
+        return mano.tamaño();
+    }
 
+    public Carta quitarCarta(int pos){
+        Carta[] aux = new Carta[mano.tamaño()];
+        int i = 0;
+        
+        for(Carta carta: mano){
+            aux[i]=carta;
+            i++;
+        }
+        
+        Carta cartaDevuelta = aux[pos];
+        mano.suprimir(cartaDevuelta);
+        
+        return cartaDevuelta;
+    }
 
+    @Override
+    
+    public String toString(){
+        ordenar();
+        String toRet = "";
+        int i = 0;
+
+        for (Carta c : mano) {
+            toRet = toRet + "[" + i + "] " + c.toString();
+            i++;
+        }
+        
+        return toRet;
+    }
 }
